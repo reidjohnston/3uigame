@@ -2,30 +2,31 @@
 package gdx.reid;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
-public class Button extends Sprite {
-
-    int nX, nY;
-    float fW, fH;
-
-    public Button(int _nX, int _nY, String sFile) {
+/**
+ *
+ * @author johnr5818
+ */
+public class Button extends Sprite{
+    int nX, nY, nW, nH;
+    public Button(int _nX, int _nY, int _nW, int _nH, String sFile){
         super(new Texture(Gdx.files.internal(sFile)));
         nX = _nX;
         nY = _nY;
-        fW = getWidth();
-        fH = getHeight();
+        nW = _nW;
+        nH = _nH;
         setPosition(nX, nY);
-        setFlip(false, false);
+        setFlip(false, true);
+        setSize(nW, nH);
     }
-
-    public boolean isMousedOver() { // Checks if the mouse is over the button, not whether the mouse was clicked
-        if (Gdx.input.getX() > nX && Gdx.input.getX() < nX + fW) {
-            if (Gdx.input.getY() * (-1) + 744 > nY && Gdx.input.getY() * (-1) + 744 < nY + fH) {
-                return true;
-            }
+    //Thanks Ameer and Joel!!!!!! 
+    public boolean isMousedOver(){
+        if(this.getBoundingRectangle().contains(Gdx.input.getX(), Gdx.input.getY())){ 
+            return true;
         }
-        return false;
+       return false;
     }
+   
 }
