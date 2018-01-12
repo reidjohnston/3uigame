@@ -1,4 +1,4 @@
-package gdxr.eid;
+package gdx.reid;
 
 import com.badlogic.gdx.Game;
 
